@@ -18,6 +18,10 @@ export const MuuriHook = {
 
     this.grid.add(newChildren, { index: 0 });
   },
+  reconnected() {
+    this.grid.refreshItems();
+    this.grid.layout();
+  },
 };
 
 export function cloneContainer(from, to) {
