@@ -1,11 +1,11 @@
 <div class="p-4">
-  <button phx-click="add" class="px-2 transition duration-200 border rounded hover:bg-gray-300">Add card</button>
-  <div id="muuri-hook" class="relative -mx-1 text-3xl" phx-hook="MuuriHook" phx-update="prepend">
-    <%= for card <- @cards do %>
-      <div id="card-<%= card %>" data-id="<%= card %>" class="absolute p-1">
-        <div class="relative flex items-center justify-center border rounded cursor-pointer w-36 h-36 before-update-copy-style">
-          <%= card %>
-        </div>
+  <div id="muuri-hook" class="relative -mx-1 text-3xl" phx-hook="MuuriHook">
+    <%= for widget <- @widgets do %>
+      <div id="widget-<%= widget.id %>" data-id="<%= widget.id %>" class="absolute p-1 <%= width(widget) %>">
+        <%= live_render @socket, MuuriWeb.WidgetLive,
+          id: ["widget-live-", widget.id],
+          session: %{"widget_id" => widget.id},
+          container: {:div, class: "rounded border bg-white"} %>
       </div>
     <% end %>
   </div>

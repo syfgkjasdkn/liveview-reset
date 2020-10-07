@@ -51,6 +51,13 @@ defmodule MuuriWeb do
     end
   end
 
+  def child_live_view do
+    quote do
+      use Phoenix.LiveView, layout: nil
+      unquote(view_helpers())
+    end
+  end
+
   def live_component do
     quote do
       use Phoenix.LiveComponent
